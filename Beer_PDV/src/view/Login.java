@@ -2,6 +2,9 @@
 package view;
 
 import DAO.LoginDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.AuthenticationException;
 import javax.swing.JOptionPane;
 import model.login;
 
@@ -23,7 +26,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Valida as credenciais de login.
      */
-    public void validar() {
+    public void validar() throws AuthenticationException {
         String usuario = txtUsuario.getText();
         String pass = new String(txtPass.getPassword());
 
@@ -37,7 +40,7 @@ public class Login extends javax.swing.JFrame {
                 sis.setVisible(true);
                 this.dispose(); // Fecha a tela de login
             } else {
-                JOptionPane.showMessageDialog(this, "usuario o la Contraseña incorrecta", "Erro de Login", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Usuario ou senha incorreta", "Erro de Login", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos", "Erro de Login", JOptionPane.ERROR_MESSAGE);
@@ -109,7 +112,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-      validar();
+        try {
+            validar();
+        } catch (AuthenticationException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
