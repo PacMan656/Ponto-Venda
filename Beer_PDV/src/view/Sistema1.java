@@ -35,7 +35,7 @@ import model.login;
  *
  * @author USUARIO
  */
-public final class Sistema extends javax.swing.JFrame {
+public final class Sistema1 extends javax.swing.JFrame {
 
     Date fechaVenta = new Date();
     String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(fechaVenta);
@@ -57,11 +57,11 @@ public final class Sistema extends javax.swing.JFrame {
     int item;
     double Totalpagar = 0.00;
 
-    public Sistema() {
+    public Sistema1() {
         initComponents();
     }
 
-    public Sistema(login priv) {
+    public Sistema1(login priv) {
         initComponents();
         this.setLocationRelativeTo(null);
         Midate.setDate(fechaVenta);
@@ -683,6 +683,18 @@ public final class Sistema extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(txtDirecionCliente))
                     .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(btnGuardarCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarCliente)
+                                .addGap(12, 12, 12)
+                                .addComponent(btnEditarCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnNovoCliente))))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel14)
@@ -691,19 +703,7 @@ public final class Sistema extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDniCliente)
                             .addComponent(txtTelefoneCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                            .addComponent(txtNomeCliente)))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(btnGuardarCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminarCliente)
-                                .addGap(12, 12, 12)
-                                .addComponent(btnEditarCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnNovoCliente)))))
+                            .addComponent(txtNomeCliente))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -1463,7 +1463,7 @@ public final class Sistema extends javax.swing.JFrame {
                 try {
                     proDao.ModificarProductos(pro);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Sistema1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(null, "Producto Modificado");
                 LimpiarTable();
@@ -1723,7 +1723,7 @@ public final class Sistema extends javax.swing.JFrame {
                 try {
                     RegistrarDetalle();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Sistema1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ActualizarStock();
                 LimpiarTableVenta();
@@ -1867,20 +1867,22 @@ public final class Sistema extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Sistema().setVisible(true);
+            new Sistema1().setVisible(true);
         });
     }
 
