@@ -2055,10 +2055,10 @@ public final class Sistema extends javax.swing.JFrame {
         for (int i = 0; i < TableVenta.getRowCount(); i++) {
             int id_pro = Integer.parseInt(TableVenta.getValueAt(i, 0).toString());
             int cant = Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
-            double precio = Double.parseDouble(TableVenta.getValueAt(i, 3).toString());
+            double preco = Double.parseDouble(TableVenta.getValueAt(i, 3).toString());
             Dv.setId_pro(id_pro);
             Dv.setCantidad(cant);
-            Dv.setPrecio(precio);
+            Dv.setPreco(preco);
             Dv.setId(id);
             Vdao.RegistrarDetalle(Dv);
 

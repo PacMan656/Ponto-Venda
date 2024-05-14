@@ -5,19 +5,19 @@ public class Detalle {
     private int id;
     private int id_pro;
     private int cantidad;
-    private double precio;
-    private int id_venta;
+    private double preco;
+    private int id_venda;
     
     public Detalle(){
         
     }
 
-    public Detalle(int id, int id_pro, int cantidad, double precio, int id_venta) {
+    public Detalle(int id, int id_pro, int cantidad, double preco, int id_venda) {
         this.id = id;
         this.id_pro = id_pro;
         this.cantidad = cantidad;
-        this.precio = precio;
-        this.id_venta = id_venta;
+        this.preco = preco;
+        this.id_venda = id_venda;
     }
 
     public int getId() {
@@ -44,19 +44,19 @@ public class Detalle {
         this.cantidad = cantidad;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
-    public int getId_venta() {
-        return id_venta;
+    public int getId_venda() {
+        return id_venda;
     }
 
-    public void setId_venta(int id_venta) {
-        this.id_venta = id_venta;
+    public void setId_venda(int id_venda) {
+        this.id_venda = id_venda;
     }
 }
