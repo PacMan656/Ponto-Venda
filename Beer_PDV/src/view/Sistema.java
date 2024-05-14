@@ -2047,7 +2047,7 @@ public final class Sistema extends javax.swing.JFrame {
         v.setVendedor(vendedor);
         v.setTotal(monto);
         v.setDataVenda(fechaActual);
-        Vdao.RegistrarVenta(v);
+        Vdao.RegistrarVenda(v);
     }
 
     private void RegistrarDetalle() throws SQLException {

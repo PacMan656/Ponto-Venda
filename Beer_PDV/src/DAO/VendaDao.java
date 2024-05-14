@@ -55,7 +55,7 @@ public class VendaDao {
         return id;
     }
 
-    public int RegistrarVenta(Venda v) {
+    public int RegistrarVenda(Venda v) {
         String sql = "INSERT INTO vendas (cliente, vendedor, total, dataVenda) VALUES (?,?,?,?)";
         try (Connection conexao = ConnectionManager.abrirConexao(); PreparedStatement pst = conexao.prepareStatement(sql)) {
             pst.setInt(1, v.getCliente());
@@ -80,7 +80,7 @@ public class VendaDao {
         try (Connection conexao = ConnectionManager.abrirConexao(); PreparedStatement pst = conexao.prepareStatement(sql)) {
             pst.setInt(1, Dv.getId_pro());
             pst.setInt(2, Dv.getCantidad());
-            pst.setDouble(3, Dv.getPrecio());
+            pst.setDouble(3, Dv.getPreco());
             pst.setInt(4, Dv.getId());
             pst.executeUpdate();
         } catch (SQLException e) {

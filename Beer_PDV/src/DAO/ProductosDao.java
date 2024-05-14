@@ -30,7 +30,7 @@ public class ProductosDao {
             pst.setString(2, pro.getNome());
             pst.setInt(3, pro.getProvedor());
             pst.setInt(4, pro.getStock());
-            pst.setDouble(5, pro.getPrecio());
+            pst.setDouble(5, pro.getPreco());
             pst.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -51,7 +51,7 @@ public class ProductosDao {
                 pro.setProvedor(rs.getInt("id_provedor"));
                 pro.setProvedorPro(rs.getString("nome_provedor"));
                 pro.setStock(rs.getInt("stock"));
-                pro.setPrecio(rs.getDouble("preco"));
+                pro.setPreco(rs.getDouble("preco"));
                 Listapro.add(pro);
             }
         } catch (SQLException e) {
@@ -98,7 +98,7 @@ public class ProductosDao {
             pst.setString(2, pro.getNome());
             pst.setInt(3, pro.getProvedor());
             pst.setInt(4, pro.getStock());
-            pst.setDouble(5, pro.getPrecio());
+            pst.setDouble(5, pro.getPreco());
             pst.setInt(6, pro.getId()); // Utiliza o ID para identificar o produto a ser atualizado.
 
             // Executa o update e verifica se alguma linha foi afetada
@@ -118,7 +118,7 @@ public class ProductosDao {
             if (rs.next()) {
                 producto.setId(rs.getInt("id"));
                 producto.setNome(rs.getString("nome"));
-                producto.setPrecio(rs.getDouble("preco"));
+                producto.setPreco(rs.getDouble("preco"));
                 producto.setStock(rs.getInt("stock"));
             }
         } catch (SQLException e) {
@@ -139,7 +139,7 @@ public class ProductosDao {
                 pro.setProvedor(rs.getInt("provedor"));
                 pro.setProvedorPro(rs.getString("nome_provedor"));
                 pro.setStock(rs.getInt("stock"));
-                pro.setPrecio(rs.getDouble("preco"));
+                pro.setPreco(rs.getDouble("preco"));
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
