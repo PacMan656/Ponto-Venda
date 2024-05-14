@@ -27,8 +27,7 @@ Para instalar o Sistema de Vendas Beer_PDV, siga os passos abaixo:
 
 1. Clone o repositório do projeto:
    ```bash
-   git clone https://github.com/seu-usuario/sistema-de-vendas-xyz.git
-   cd sistema-de-vendas-xyz
+   git clone https://github.com/PacMan656/Ponto-Venda.git
    ```
 
 2. Instale as dependências do projeto:
