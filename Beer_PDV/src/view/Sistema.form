@@ -132,7 +132,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Img/proveedor.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Provedor"/>
+            <Property name="text" type="java.lang.String" value="Atendente"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
@@ -1262,7 +1262,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="btnGuardarpro" min="-2" max="-2" attributes="0"/>
@@ -1385,7 +1385,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="12" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Vendedor:"/>
+                    <Property name="text" type="java.lang.String" value="Atendente:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCantPro">

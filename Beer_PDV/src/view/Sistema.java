@@ -142,7 +142,7 @@ public final class Sistema extends javax.swing.JFrame {
             ob[2] = ListarPro.get(i).getNome();
             ob[3] = ListarPro.get(i).getProvedorPro();
             ob[4] = ListarPro.get(i).getStock();
-            ob[5] = ListarPro.get(i).getPrecio();
+            ob[5] = ListarPro.get(i).getPreco();
             modelo.addRow(ob);
         }
         TableProducto.setModel(modelo);
@@ -349,7 +349,7 @@ public final class Sistema extends javax.swing.JFrame {
         btnProvedor.setBackground(new java.awt.Color(153, 153, 153));
         btnProvedor.setForeground(new java.awt.Color(255, 255, 255));
         btnProvedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/proveedor.png"))); // NOI18N
-        btnProvedor.setText("Provedor");
+        btnProvedor.setText("Atendente");
         btnProvedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProvedor.setFocusable(false);
         btnProvedor.addActionListener(new java.awt.event.ActionListener() {
@@ -926,7 +926,7 @@ public final class Sistema extends javax.swing.JFrame {
         jLabel23.setText("Descrição:");
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel24.setText("Vendedor:");
+        jLabel24.setText("Atendente:");
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setText("Preço:");
@@ -984,7 +984,7 @@ public final class Sistema extends javax.swing.JFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGap(0, 18, Short.MAX_VALUE)
+                .addGap(0, 11, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(btnGuardarpro)
@@ -1454,7 +1454,7 @@ public final class Sistema extends javax.swing.JFrame {
                 Combo itemP = (Combo) cbxProvedorPro.getSelectedItem();
                 pro.setProvedor(itemP.getId());
                 pro.setStock(Integer.parseInt(txtCantPro.getText()));
-                pro.setPrecio(Double.parseDouble(txtPrecioPro.getText()));
+                pro.setPreco(Double.parseDouble(txtPrecioPro.getText()));
                 pro.setId(Integer.parseInt(txtIdproducto.getText()));
                 try {
                     proDao.ModificarProductos(pro);
@@ -1482,7 +1482,7 @@ public final class Sistema extends javax.swing.JFrame {
             Combo itemP = (Combo) cbxProvedorPro.getSelectedItem();
             pro.setProvedor(itemP.getId());
             pro.setStock(Integer.parseInt(txtCantPro.getText()));
-            pro.setPrecio(Double.parseDouble(txtPrecioPro.getText()));
+            pro.setPreco(Double.parseDouble(txtPrecioPro.getText()));
             proDao.RegistrarProductos(pro);
             JOptionPane.showMessageDialog(null, "Productos Registrado");
             LimpiarTable();
@@ -1819,7 +1819,7 @@ public final class Sistema extends javax.swing.JFrame {
                 if (pro.getNome() != null) {
                     txtIdPro.setText("" + pro.getId());
                     txtDescripcionVenda.setText("" + pro.getNome());
-                    txtPrecoVenda.setText("" + pro.getPrecio());
+                    txtPrecoVenda.setText("" + pro.getPreco());
                     txtStockDisponible.setText("" + pro.getStock());
                     txtCantidadVenda.requestFocus();
                 } else {

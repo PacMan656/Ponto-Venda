@@ -21,8 +21,6 @@ public class ProductosDao {
     }
 
     ConnectionManager Con;
-    PreparedStatement ps;
-    ResultSet rs;
 
     public boolean RegistrarProductos(Productos pro) {
         String sql = "INSERT INTO productos (codigo, nome, provedor, stock, preco) VALUES (?,?,?,?,?)";

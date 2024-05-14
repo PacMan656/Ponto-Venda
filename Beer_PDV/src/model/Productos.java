@@ -9,7 +9,7 @@ public class Productos {
     private int Provedor;
     private String ProvedorPro;
     private int stock;
-    private double precio;
+    private double preco;
     
     public Productos(){
         
@@ -22,7 +22,7 @@ public class Productos {
         this.Provedor = Provedor;
         this.ProvedorPro = ProvedorPro;
         this.stock = stock;
-        this.precio = precio;
+        this.preco = preco;
     }
 
     public int getId() {
@@ -73,12 +73,12 @@ public class Productos {
         this.stock = stock;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
    
