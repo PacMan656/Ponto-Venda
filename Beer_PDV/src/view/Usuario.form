@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[937, 350]"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="0" green="0" red="33" type="rgb"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -49,41 +49,41 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel4" max="32767" attributes="0"/>
+                      <Component id="jPanel3" max="32767" attributes="0"/>
                       <Component id="jPanel2" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" min="-2" pref="471" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="471" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jPanel2" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" alignment="0" pref="350" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel4" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jPanel3" min="-2" pref="52" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="TableProvedor">
+            <Component class="javax.swing.JTable" name="TableCliente">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="RUC" type="java.lang.Object"/>
+                    <Column editable="true" title="DNI/RUC" type="java.lang.Object"/>
                     <Column editable="true" title="NOME" type="java.lang.Object"/>
                     <Column editable="true" title="TELEFONE" type="java.lang.Object"/>
                     <Column editable="true" title="DIRE&#xc7;&#xc3;O" type="java.lang.Object"/>
@@ -94,88 +94,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TableProvedorMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TableClienteMouseClicked"/>
               </Events>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jPanel4">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="33" type="rgb"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
-                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-                </LineBorder>
-              </Border>
-            </Property>
-          </Properties>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="btnNovoProvedor" min="-2" pref="101" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnguardarProvedor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnEditarProvedor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnEliminarProvedor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnNovoProvedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnguardarProvedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEditarProvedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEliminarProvedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JButton" name="btnNovoProvedor">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/nuevo.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="NOVO"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnguardarProvedor">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/GuardarTodo.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="SALVAR"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnEditarProvedor">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/Actualizar (2).png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="EDITAR"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnEliminarProvedor">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/eliminar.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="EXCLUIR"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -186,7 +106,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Dados do Fornecedor">
+                <TitledBorder title="Dados do Clientes">
                   <Font PropertyName="font" name="Segoe UI" size="24" style="3"/>
                   <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
                 </TitledBorder>
@@ -197,27 +117,34 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtDniCliente" min="-2" pref="262" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtTelefoneCliente" min="-2" pref="262" max="-2" attributes="0"/>
+                                  <Component id="txtDirecionCliente" min="-2" pref="262" max="-2" attributes="0"/>
+                                  <Component id="txtNomeCliente" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
+                                  <Component id="txtIdCliente" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtRucProvedor" min="-2" pref="262" max="-2" attributes="0"/>
-                          <Component id="txtTelefoneProvedor" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
-                          <Component id="txtDireccionProvedor" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
-                          <Component id="txtNomeProvedor" alignment="0" min="-2" pref="262" max="-2" attributes="0"/>
-                          <Component id="txtIdProvedor" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="103" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -225,24 +152,24 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtRucProvedor" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDniCliente" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtNomeProvedor" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNomeCliente" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTelefoneProvedor" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTelefoneCliente" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtDireccionProvedor" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="txtDirecionCliente" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -250,7 +177,7 @@
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtIdProvedor" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtIdCliente" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -265,7 +192,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="RUC:"/>
+                <Property name="text" type="java.lang.String" value="DNI-RUC:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
@@ -301,17 +228,94 @@
                 <Property name="text" type="java.lang.String" value="TELEFONE:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtRucProvedor">
+            <Component class="javax.swing.JTextField" name="txtDniCliente">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNomeProvedor">
+            <Component class="javax.swing.JTextField" name="txtNomeCliente">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtTelefoneProvedor">
+            <Component class="javax.swing.JTextField" name="txtTelefoneCliente">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtDireccionProvedor">
+            <Component class="javax.swing.JTextField" name="txtDirecionCliente">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtIdProvedor">
+            <Component class="javax.swing.JTextField" name="txtIdCliente">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel3">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="33" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="btnNovoCliente" min="-2" pref="101" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnGuardarCliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnEditarCliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnEliminarCliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnNovoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnGuardarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEditarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEliminarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnNovoCliente">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/nuevo.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="NOVO"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnGuardarCliente">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/GuardarTodo.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="SALVAR"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnEditarCliente">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/Actualizar (2).png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="EDITAR"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnEliminarCliente">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/img/eliminar.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="EXCLUIR"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -48,6 +48,7 @@ public class Produto extends javax.swing.JFrame {
         txtIdproducto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 0, 0));
         setMaximumSize(new java.awt.Dimension(1200, 560));
         setPreferredSize(new java.awt.Dimension(1050, 450));
 

@@ -32,6 +32,7 @@ public class SistemaBeer extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -39,6 +40,10 @@ public class SistemaBeer extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1200, 650));
@@ -51,14 +56,14 @@ public class SistemaBeer extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1160, Short.MAX_VALUE)
+            .addGap(0, 1190, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 650, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 650));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 650));
 
         jMenuBar1.setBackground(new java.awt.Color(51, 0, 0));
 
@@ -92,6 +97,10 @@ public class SistemaBeer extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
+        jMenuItem10.setText("USUARIO");
+        jMenu1.add(jMenuItem10);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("PESQUISA");
@@ -122,6 +131,23 @@ public class SistemaBeer extends javax.swing.JFrame {
         jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu6.setText("NOVA VENDA");
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Nventa.png"))); // NOI18N
+        jMenuItem9.setText("REALIZAR VENDA");
+        jMenuItem9.setPreferredSize(new java.awt.Dimension(160, 36));
+        jMenu6.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu6);
+
+        jMenu5.setText("CONFIGURAÇÃO");
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/config.png"))); // NOI18N
+        jMenuItem8.setText("CONFIGURAÇÃO");
+        jMenu5.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -181,14 +207,19 @@ public class SistemaBeer extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
