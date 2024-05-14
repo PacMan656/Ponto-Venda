@@ -46,7 +46,7 @@ A aplicação agora estará rodando no `localhost:3000`.
 
 ## Uso
 
-Para começar a usar o Sistema de Vendas XYZ, crie uma conta de usuário e faça login. Após o login, você poderá acessar o painel de controle onde todas as funcionalidades estarão disponíveis.
+Para começar a usar o Sistema de Vendas Beer_PDV, crie uma conta de usuário e faça login. Após o login, você poderá acessar o painel de controle onde todas as funcionalidades estarão disponíveis.
 
 ## Contribuição
 
