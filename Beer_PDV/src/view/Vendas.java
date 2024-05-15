@@ -4,8 +4,15 @@
  */
 package view;
 
+import DAO.ProductosDao;
 import DAO.VendaDao;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Eventos;
+import model.Productos;
 import model.Venda;
 
 /**
@@ -16,7 +23,12 @@ public class Vendas extends javax.swing.JFrame {
 
     Venda v = new Venda();
     VendaDao Vdao = new VendaDao();
-
+    Productos pro = new Productos();
+    ProductosDao proDao = new ProductosDao();
+    Eventos event = new Eventos();
+    int item;
+    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel tmp = new DefaultTableModel();
     /**
      * Creates new form Produto
      */
@@ -59,6 +71,7 @@ public class Vendas extends javax.swing.JFrame {
         txtRucVenda = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         LabelTotal = new javax.swing.JLabel();
+        txtIdVenda = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableVenta = new javax.swing.JTable();
 
@@ -252,6 +265,8 @@ public class Vendas extends javax.swing.JFrame {
         LabelTotal.setForeground(new java.awt.Color(255, 255, 255));
         LabelTotal.setText("-----");
 
+        txtIdVenda.setEnabled(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -273,7 +288,9 @@ public class Vendas extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtNomeClienteVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(txtIdCV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtIdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdCV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -282,8 +299,10 @@ public class Vendas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addGap(7, 7, 7)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(txtIdVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRucVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeClienteVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,7 +311,7 @@ public class Vendas extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(LabelTotal)
                     .addComponent(jLabel10))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         TableVenta.setModel(new javax.swing.table.DefaultTableModel(
@@ -554,9 +573,44 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JTextField txtDescripcionVenda;
     private javax.swing.JTextField txtIdCV;
     private javax.swing.JTextField txtIdPro;
+    private javax.swing.JTextField txtIdVenda;
     private javax.swing.JTextField txtNomeClienteVenda;
     private javax.swing.JTextField txtPrecoVenda;
     private javax.swing.JTextField txtRucVenda;
     private javax.swing.JTextField txtStockDisponible;
     // End of variables declaration//GEN-END:variables
+    
+        private void LimparVenta() {
+        txtCodigoVenda.setText("");
+        txtDescripcionVenda.setText("");
+        txtCantidadVenda.setText("");
+        txtStockDisponible.setText("");
+        txtPrecoVenda.setText("");
+        txtIdVenda.setText("");
+    }
+
+    private void RegistrarVenta() {
+        int cliente = Integer.parseInt(txtIdCV.getText());
+        String vendedor = LabelVendedor.getText();
+        double monto = Totalpagar;
+        v.setCliente(cliente);
+        v.setVendedor(vendedor);
+        v.setTotal(monto);
+        v.setDataVenda(fechaActual);
+        Vdao.RegistrarVenda(v);
+    }
+    public void ListarVentas() {
+        List<Venda> ListarVenda = Vdao.Listarvendas();
+        modelo = (DefaultTableModel) TableVendas.getModel();
+        Object[] ob = new Object[4];
+        for (int i = 0; i < ListarVenda.size(); i++) {
+            ob[0] = ListarVenda.get(i).getId();
+            ob[1] = ListarVenda.get(i).getNome_cli();
+            ob[2] = ListarVenda.get(i).getVendedor();
+            ob[3] = ListarVenda.get(i).getTotal();
+            modelo.addRow(ob);
+        }
+        TableVendas.setModel(modelo);
+
+    }
 }
