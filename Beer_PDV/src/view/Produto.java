@@ -4,11 +4,31 @@
  */
 package view;
 
+import DAO.ProductosDao;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Combo;
+import model.Productos;
+import model.Provedor;
+import DAO.ProvedorDao;
+
 /**
  *
  * @author marco
  */
 public class Produto extends javax.swing.JFrame {
+    Provedor pr = new Provedor();
+    ProvedorDao PrDao = new ProvedorDao();
+    Productos pro = new Productos();
+    ProductosDao proDao = new ProductosDao();
+    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel tmp = new DefaultTableModel();
+    int item;
+    double Totalpagar = 0.00;
 
     /**
      * Creates new form Produto
@@ -90,15 +110,35 @@ public class Produto extends javax.swing.JFrame {
 
         btnNovoPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
         btnNovoPro.setText("NOVO");
+        btnNovoPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoProActionPerformed(evt);
+            }
+        });
 
         btnGuardarpro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/GuardarTodo.png"))); // NOI18N
         btnGuardarpro.setText("SALVAR");
+        btnGuardarpro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarproActionPerformed(evt);
+            }
+        });
 
         btnEditarpro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actualizar (2).png"))); // NOI18N
         btnEditarpro.setText("EDITAR");
+        btnEditarpro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarproActionPerformed(evt);
+            }
+        });
 
         btnEliminarPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
         btnEliminarPro.setText("EXCLUIR");
+        btnEliminarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -252,6 +292,122 @@ public class Produto extends javax.swing.JFrame {
         cbxProvedorPro.setSelectedItem(new Combo(pro.getProvedor(), pro.getProvedorPro()));
     }//GEN-LAST:event_TableProductoMouseClicked
 
+    private void btnGuardarproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarproActionPerformed
+        try {
+            boolean fieldsAreValid = !txtCodigoPro.getText().isEmpty() && !txtDesPro.getText().isEmpty() && cbxProvedorPro.getSelectedItem() != null && !txtCantPro.getText().isEmpty() && !txtPrecioPro.getText().isEmpty();
+
+            if (fieldsAreValid) {
+                pro.setCodigo(txtCodigoPro.getText());
+                pro.setNome(txtDesPro.getText());
+                Combo itemP = (Combo) cbxProvedorPro.getSelectedItem();
+                pro.setProvedor(itemP.getId());
+                pro.setStock(Integer.parseInt(txtCantPro.getText()));
+                pro.setPreco(Double.parseDouble(txtPrecioPro.getText()));
+
+                proDao.RegistrarProductos(pro);
+
+                JOptionPane.showMessageDialog(null, "Producto registrado con éxito.");
+
+                LimpiarTable();
+                ListarProductos();
+                LimpiarProductos();
+                cbxProvedorPro.removeAllItems();
+                llenarProvedor();
+
+                btnEditarpro.setEnabled(false);
+                btnEliminarPro.setEnabled(false);
+                btnGuardarpro.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Todos os campos devem ser llenados.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error no formato de número: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error ao registrar  produto: " + e.getMessage());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarproActionPerformed
+
+    private void btnEditarproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarproActionPerformed
+ // TODO add your handling code here:
+        int selectedRow = TableProducto.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um bairro para editar.");
+            return;
+        }
+
+        // Obter os dados do bairro selecionado
+        int idProducto = Integer.parseInt(TableProducto.getValueAt(selectedRow, 0).toString()); // Ajuste o índice da coluna conforme sua tabela
+        String nome = TableProducto.getValueAt(selectedRow, 1).toString();
+        String nomeCidade = TableProducto.getValueAt(selectedRow, 2).toString();
+
+        if ("".equals(txtIdproducto.getText())) {
+            JOptionPane.showMessageDialog(null, "Seleecione um item");
+        } else {
+            if (!"".equals(txtCodigoPro.getText()) || !"".equals(txtDesPro.getText()) || !"".equals(txtCantPro.getText()) || !"".equals(txtPrecioPro.getText())) {
+                pro.setCodigo(txtCodigoPro.getText());
+                pro.setNome(txtDesPro.getText());
+                Combo itemP = (Combo) cbxProvedorPro.getSelectedItem();
+                pro.setProvedor(itemP.getId());
+                pro.setStock(Integer.parseInt(txtCantPro.getText()));
+                pro.setPreco(Double.parseDouble(txtPrecioPro.getText()));
+                pro.setId(Integer.parseInt(txtIdproducto.getText()));
+                try {
+                    proDao.ModificarProductos(pro);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(null, "Producto Modificado");
+                LimpiarTable();
+                ListarProductos();
+                LimpiarProductos();
+                cbxProvedorPro.removeAllItems();
+                llenarProvedor();
+                btnEditarpro.setEnabled(false);
+                btnEliminarPro.setEnabled(false);
+                btnGuardarpro.setEnabled(true);
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarproActionPerformed
+
+    private void btnEliminarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(txtIdproducto.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Certeza que deseja excluir");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(txtIdproducto.getText());
+                proDao.EliminarProductos(id);
+                LimpiarTable();
+                LimpiarProductos();
+                ListarProductos();
+                btnEditarpro.setEnabled(false);
+                btnEliminarPro.setEnabled(false);
+                btnGuardarpro.setEnabled(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona um item");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarProActionPerformed
+
+    private void btnNovoProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(txtIdproducto.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Certeza que deseja excluir");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(txtIdproducto.getText());
+                proDao.EliminarProductos(id);
+                LimpiarTable();
+                LimpiarProductos();
+                ListarProductos();
+                btnEditarpro.setEnabled(false);
+                btnEliminarPro.setEnabled(false);
+                btnGuardarpro.setEnabled(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona um item");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoProActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -310,4 +466,45 @@ public class Produto extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdproducto;
     private javax.swing.JTextField txtPrecioPro;
     // End of variables declaration//GEN-END:variables
+    public void LimpiarTable() {
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+    }
+
+    public void ListarProductos() {
+        List<Productos> ListarPro = proDao.ListarProductos();
+        modelo = (DefaultTableModel) TableProducto.getModel();
+        Object[] ob = new Object[6];
+        for (int i = 0; i < ListarPro.size(); i++) {
+            ob[0] = ListarPro.get(i).getId();
+            ob[1] = ListarPro.get(i).getCodigo();
+            ob[2] = ListarPro.get(i).getNome();
+            ob[3] = ListarPro.get(i).getProvedorPro();
+            ob[4] = ListarPro.get(i).getStock();
+            ob[5] = ListarPro.get(i).getPreco();
+            modelo.addRow(ob);
+        }
+        TableProducto.setModel(modelo);
+
+    }
+
+    private void LimpiarProductos() {
+        txtIdproducto.setText("");
+        txtCodigoPro.setText("");
+        cbxProvedorPro.setSelectedItem("");
+        txtDesPro.setText("");
+        txtCantPro.setText("");
+        txtPrecioPro.setText("");
+    }
+
+    private void llenarProvedor() {
+        List<Provedor> lista = PrDao.ListarProvedor();
+        for (int i = 0; i < lista.size(); i++) {
+            int id = lista.get(i).getId();
+            String nome = lista.get(i).getNome();
+            cbxProvedorPro.addItem(new Combo(id, nome));
+        }
+    }
 }

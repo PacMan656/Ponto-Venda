@@ -4,23 +4,35 @@
  */
 package view;
 
+import DAO.ClienteDao;
 import DAO.ProductosDao;
 import DAO.VendaDao;
+import Reports.Grafico;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Detalle;
 import model.Eventos;
 import model.Productos;
 import model.Venda;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author marco
  */
 public class Vendas extends javax.swing.JFrame {
-
+    
+    Detalle Dv = new Detalle();
+    Date fechaVenta = new Date();
+    String fechaActual = new SimpleDateFormat("dd/MM/yyyy").format(fechaVenta);
+    model.Cliente cl = new model.Cliente();
+    ClienteDao client = new ClienteDao();
     Venda v = new Venda();
     VendaDao Vdao = new VendaDao();
     Productos pro = new Productos();
@@ -29,6 +41,7 @@ public class Vendas extends javax.swing.JFrame {
     int item;
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel tmp = new DefaultTableModel();
+    double Totalpagar = 0.00;
     /**
      * Creates new form Produto
      */
@@ -73,7 +86,7 @@ public class Vendas extends javax.swing.JFrame {
         LabelTotal = new javax.swing.JLabel();
         txtIdVenda = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableVenta = new javax.swing.JTable();
+        TableVendas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 0, 0));
@@ -314,7 +327,7 @@ public class Vendas extends javax.swing.JFrame {
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
-        TableVenta.setModel(new javax.swing.table.DefaultTableModel(
+        TableVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -322,7 +335,7 @@ public class Vendas extends javax.swing.JFrame {
                 "ID", "DESCRIÇÃO", "CANTIDAD", "PRECO U.", "PRECO TOTAL"
             }
         ));
-        jScrollPane1.setViewportView(TableVenta);
+        jScrollPane1.setViewportView(TableVendas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -418,9 +431,9 @@ public class Vendas extends javax.swing.JFrame {
                 int stock = Integer.parseInt(txtStockDisponible.getText());
                 if (stock >= cant) {
                     item = item + 1;
-                    tmp = (DefaultTableModel) TableVenta.getModel();
-                    for (int i = 0; i < TableVenta.getRowCount(); i++) {
-                        if (TableVenta.getValueAt(i, 1).equals(txtDescripcionVenda.getText())) {
+                    tmp = (DefaultTableModel) TableVendas.getModel();
+                    for (int i = 0; i < TableVendas.getRowCount(); i++) {
+                        if (TableVendas.getValueAt(i, 1).equals(txtDescripcionVenda.getText())) {
                             JOptionPane.showMessageDialog(null, "El producto ya esta registrado");
                             return;
                         }
@@ -439,7 +452,7 @@ public class Vendas extends javax.swing.JFrame {
                     O[3] = lista.get(4);
                     O[4] = lista.get(5);
                     tmp.addRow(O);
-                    TableVenta.setModel(tmp);
+                    TableVendas.setModel(tmp);
                     TotalPagar();
                     LimparVenta();
                     txtCodigoVenda.requestFocus();
@@ -459,7 +472,7 @@ public class Vendas extends javax.swing.JFrame {
 
     private void btnGenerarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarVendaActionPerformed
         // TODO add your handling code here:
-        if (TableVenta.getRowCount() > 0) {
+        if (TableVendas.getRowCount() > 0) {
             if (!"".equals(txtNomeClienteVenda.getText())) {
                 RegistrarVenta();
                 try {
@@ -552,7 +565,7 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JLabel LabelTotal;
     private javax.swing.JLabel LabelVendedor;
     private com.toedter.calendar.JDateChooser Midate;
-    private javax.swing.JTable TableVenta;
+    private javax.swing.JTable TableVendas;
     private javax.swing.JButton btnGenerarVenda;
     private javax.swing.JButton btnGraficar;
     private javax.swing.JLabel jLabel10;
@@ -579,8 +592,8 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JTextField txtRucVenda;
     private javax.swing.JTextField txtStockDisponible;
     // End of variables declaration//GEN-END:variables
-    
-        private void LimparVenta() {
+
+    private void LimparVenta() {
         txtCodigoVenda.setText("");
         txtDescripcionVenda.setText("");
         txtCantidadVenda.setText("");
@@ -588,7 +601,12 @@ public class Vendas extends javax.swing.JFrame {
         txtPrecoVenda.setText("");
         txtIdVenda.setText("");
     }
-
+    private void LimpiarClienteventa() {
+        txtRucVenda.setText("");
+        txtNomeClienteVenda.setText("");
+        txtIdCV.setText("");
+    }
+    
     private void RegistrarVenta() {
         int cliente = Integer.parseInt(txtIdCV.getText());
         String vendedor = LabelVendedor.getText();
@@ -599,6 +617,7 @@ public class Vendas extends javax.swing.JFrame {
         v.setDataVenda(fechaActual);
         Vdao.RegistrarVenda(v);
     }
+
     public void ListarVentas() {
         List<Venda> ListarVenda = Vdao.Listarvendas();
         modelo = (DefaultTableModel) TableVendas.getModel();
@@ -612,5 +631,49 @@ public class Vendas extends javax.swing.JFrame {
         }
         TableVendas.setModel(modelo);
 
+    }
+    
+        private void RegistrarDetalle() throws SQLException {
+        int id = Vdao.IdVenta();
+        for (int i = 0; i < TableVendas.getRowCount(); i++) {
+            int id_pro = Integer.parseInt(TableVendas.getValueAt(i, 0).toString());
+            int cant = Integer.parseInt(TableVendas.getValueAt(i, 2).toString());
+            double preco = Double.parseDouble(TableVendas.getValueAt(i, 3).toString());
+            Dv.setId_pro(id_pro);
+            Dv.setCantidad(cant);
+            Dv.setPreco(preco);
+            Dv.setId(id);
+            Vdao.RegistrarDetalle(Dv);
+
+        }
+        int cliente = Integer.parseInt(txtIdCV.getText());
+        Vdao.pdfV(id, cliente, Totalpagar, LabelVendedor.getText());
+    }
+    private void TotalPagar() {
+        Totalpagar = 0.00;
+        int numFila = TableVendas.getRowCount();
+        for (int i = 0; i < numFila; i++) {
+            double cal = Double.parseDouble(String.valueOf(TableVendas.getModel().getValueAt(i, 4)));
+            Totalpagar = Totalpagar + cal;
+        }
+        LabelTotal.setText(String.format("%.2f", Totalpagar));
+    }
+    private void ActualizarStock() {
+        for (int i = 0; i < TableVendas.getRowCount(); i++) {
+            int id = Integer.parseInt(TableVendas.getValueAt(i, 0).toString());
+            int cant = Integer.parseInt(TableVendas.getValueAt(i, 2).toString());
+            pro = proDao.BuscarId(id);
+            int StockActual = pro.getStock() - cant;
+            Vdao.ActualizarStock(StockActual, id);
+
+        }
+    }
+
+    private void LimpiarTableVenta() {
+        tmp = (DefaultTableModel) TableVendas.getModel();
+        int fila = TableVendas.getRowCount();
+        for (int i = 0; i < fila; i++) {
+            tmp.removeRow(0);
+        }
     }
 }

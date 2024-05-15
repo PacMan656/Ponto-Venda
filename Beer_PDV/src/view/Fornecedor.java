@@ -4,11 +4,21 @@
  */
 package view;
 
+import DAO.ProvedorDao;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Provedor;
+
 /**
  *
  * @author marco
  */
 public class Fornecedor extends javax.swing.JFrame {
+
+    Provedor pr = new Provedor();
+    ProvedorDao PrDao = new ProvedorDao();
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /**
      * Creates new form Produto
@@ -70,15 +80,35 @@ public class Fornecedor extends javax.swing.JFrame {
 
         btnNovoProvedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
         btnNovoProvedor.setText("NOVO");
+        btnNovoProvedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoProvedorActionPerformed(evt);
+            }
+        });
 
         btnguardarProvedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/GuardarTodo.png"))); // NOI18N
         btnguardarProvedor.setText("SALVAR");
+        btnguardarProvedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarProvedorActionPerformed(evt);
+            }
+        });
 
         btnEditarProvedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Actualizar (2).png"))); // NOI18N
         btnEditarProvedor.setText("EDITAR");
+        btnEditarProvedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProvedorActionPerformed(evt);
+            }
+        });
 
         btnEliminarProvedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
         btnEliminarProvedor.setText("EXCLUIR");
+        btnEliminarProvedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProvedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -228,6 +258,74 @@ public class Fornecedor extends javax.swing.JFrame {
         txtDireccionProvedor.setText(TableProvedor.getValueAt(fila, 4).toString());
     }//GEN-LAST:event_TableProvedorMouseClicked
 
+    private void btnguardarProvedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarProvedorActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(txtRucProvedor.getText()) || !"".equals(txtNomeProvedor.getText()) || !"".equals(txtTelefoneProvedor.getText()) || !"".equals(txtDireccionProvedor.getText())) {
+            pr.setRuc(txtRucProvedor.getText());
+            pr.setNome(txtNomeProvedor.getText());
+            pr.setTelefone(txtTelefoneProvedor.getText());
+            pr.setDireccion(txtDireccionProvedor.getText());
+            PrDao.RegistrarProvedor(pr);
+            JOptionPane.showMessageDialog(null, "Provedor Registrado");
+            LimpiarTable();
+            ListarProvedor();
+            LimpiarProvedor();
+            btnEditarProvedor.setEnabled(false);
+            btnEliminarProvedor.setEnabled(false);
+            btnguardarProvedor.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Os campos estao vazios");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnguardarProvedorActionPerformed
+
+    private void btnEliminarProvedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProvedorActionPerformed
+        // TODO add your handling code here:
+        if (!"".equals(txtIdProvedor.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(txtIdProvedor.getText());
+                PrDao.EliminarProvedor(id);
+                LimpiarTable();
+                ListarProvedor();
+                LimpiarProvedor();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione um item");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarProvedorActionPerformed
+
+    private void btnEditarProvedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProvedorActionPerformed
+        // TODO add your handling code here:
+        if ("".equals(txtIdProvedor.getText())) {
+            JOptionPane.showMessageDialog(null, "Seleccione um item");
+        } else {
+            if (!"".equals(txtRucProvedor.getText()) || !"".equals(txtNomeProvedor.getText()) || !"".equals(txtTelefoneProvedor.getText()) || !"".equals(txtDireccionProvedor.getText())) {
+                pr.setRuc(txtRucProvedor.getText());
+                pr.setNome(txtNomeProvedor.getText());
+                pr.setTelefone(txtTelefoneProvedor.getText());
+                pr.setDireccion(txtDireccionProvedor.getText());
+                pr.setId(Integer.parseInt(txtIdProvedor.getText()));
+                PrDao.ModificarProvedor(pr);
+                JOptionPane.showMessageDialog(null, "Provedor Modificado");
+                LimpiarTable();
+                ListarProvedor();
+                LimpiarProvedor();
+                btnEditarProvedor.setEnabled(false);
+                btnEliminarProvedor.setEnabled(false);
+                btnguardarProvedor.setEnabled(true);
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarProvedorActionPerformed
+
+    private void btnNovoProvedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProvedorActionPerformed
+        // TODO add your handling code here:
+        LimpiarProvedor();
+        btnEditarProvedor.setEnabled(false);
+        btnEliminarProvedor.setEnabled(false);
+        btnguardarProvedor.setEnabled(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoProvedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -259,10 +357,8 @@ public class Fornecedor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Fornecedor().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Fornecedor().setVisible(true);
         });
     }
 
@@ -291,4 +387,37 @@ public class Fornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtRucProvedor;
     private javax.swing.JTextField txtTelefoneProvedor;
     // End of variables declaration//GEN-END:variables
+    public void LimpiarTable() {
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            modelo.removeRow(i);
+            i = i - 1;
+        }
+    }
+
+    /**
+     * Método para atualizar a lista de produtos na GUI após uma alteração.
+     */
+    public void ListarProvedor() {
+        List<Provedor> ListarPr = PrDao.ListarProvedor();
+        modelo = (DefaultTableModel) TableProvedor.getModel();
+        Object[] ob = new Object[5];
+        for (int i = 0; i < ListarPr.size(); i++) {
+            ob[0] = ListarPr.get(i).getId();
+            ob[1] = ListarPr.get(i).getRuc();
+            ob[2] = ListarPr.get(i).getNome();
+            ob[3] = ListarPr.get(i).getTelefone();
+            ob[4] = ListarPr.get(i).getDireccion();
+            modelo.addRow(ob);
+        }
+        TableProvedor.setModel(modelo);
+
+    }
+
+    private void LimpiarProvedor() {
+        txtIdProvedor.setText("");
+        txtRucProvedor.setText("");
+        txtNomeProvedor.setText("");
+        txtTelefoneProvedor.setText("");
+        txtDireccionProvedor.setText("");
+    }
 }
