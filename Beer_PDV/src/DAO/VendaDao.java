@@ -197,7 +197,7 @@ public class VendaDao {
             provedor.setWidths(columnWidthsCliente);
             provedor.setHorizontalAlignment(Element.ALIGN_LEFT);
             PdfPCell cliNom = new PdfPCell(new Phrase("nome", negrita));
-            PdfPCell cliTel = new PdfPCell(new Phrase("Télefono", negrita));
+            PdfPCell cliTel = new PdfPCell(new Phrase("Telefone", negrita));
             PdfPCell cliDir = new PdfPCell(new Phrase("Dirección", negrita));
             cliNom.setBorder(Rectangle.NO_BORDER);
             cliTel.setBorder(Rectangle.NO_BORDER);
@@ -210,7 +210,7 @@ public class VendaDao {
                 pst.setInt(1, Cliente);
                 if (rs.next()) {
                     provedor.addCell(rs.getString("nome"));
-                    provedor.addCell(rs.getString("telefono"));
+                    provedor.addCell(rs.getString("telefone"));
                     provedor.addCell(rs.getString("direccion") + "\n\n");
                 } else {
                     provedor.addCell("Publico en General");
@@ -245,14 +245,14 @@ public class VendaDao {
             tabla.addCell(c2);
             tabla.addCell(c3);
             tabla.addCell(c4);
-            String product = "SELECT d.id, d.id_pro,d.id_venta, d.precio, d.cantidad, p.id, p.nome FROM detalle d INNER JOIN productos p ON d.id_pro = p.id WHERE d.id_venta = ?";
+            String product = "SELECT d.id, d.id_pro,d.id_venda, d.preco, d.cantidad, p.id, p.nome FROM detalle d INNER JOIN productos p ON d.id_pro = p.id WHERE d.id_venda = ?";
             try (Connection conexao = ConnectionManager.abrirConexao(); PreparedStatement pst = conexao.prepareStatement(product); ResultSet rs = pst.executeQuery()) {
                 pst.setInt(1, idventa);
                 while (rs.next()) {
-                    double subTotal = rs.getInt("cantidad") * rs.getDouble("precio");
+                    double subTotal = rs.getInt("cantidad") * rs.getDouble("preco");
                     tabla.addCell(rs.getString("cantidad"));
                     tabla.addCell(rs.getString("nome"));
-                    tabla.addCell(rs.getString("precio"));
+                    tabla.addCell(rs.getString("preco"));
                     tabla.addCell(String.valueOf(subTotal));
                 }
 

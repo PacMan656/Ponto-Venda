@@ -2,6 +2,7 @@
 package model;
 
 public class Combo {
+    private Combo(){}
     private int id;
     private String nome;
 
