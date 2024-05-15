@@ -4,13 +4,18 @@
  */
 package view;
 
+import DAO.VendaDao;
 import java.awt.event.KeyEvent;
+import model.Venda;
 
 /**
  *
  * @author marco
  */
 public class Vendas extends javax.swing.JFrame {
+
+    Venda v = new Venda();
+    VendaDao Vdao = new VendaDao();
 
     /**
      * Creates new form Produto
@@ -133,6 +138,7 @@ public class Vendas extends javax.swing.JFrame {
 
         txtIdPro.setEnabled(false);
 
+        LabelVendedor.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         LabelVendedor.setForeground(new java.awt.Color(255, 255, 255));
         LabelVendedor.setText("Desenvolvido por: Marcos Felipe");
 
